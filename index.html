@@ -15,8 +15,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --red:#e11d2a;
-    --red-2:#b8141f;
+    --red:#f4511e;        /* Milad orange */
+    --red-2:#d43e12;
     --dark:#0f1115;      /* fixed dark sections (topbar, brands, why, footer) */
     --ink:#0f1115;       /* main text */
     --grey:#6b7280;
@@ -58,8 +58,8 @@
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 28px;border-radius:10px;font-family:'Oswald';font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:1px;transition:transform .2s, box-shadow .2s, background .2s, color .2s;cursor:pointer;border:none}
   .btn:hover{transform:translateY(-2px)}
-  .btn-red{background:var(--red);color:#fff;box-shadow:0 10px 26px rgba(225,29,42,.32)}
-  .btn-red:hover{background:var(--red-2);box-shadow:0 14px 34px rgba(225,29,42,.42)}
+  .btn-red{background:var(--red);color:#fff;box-shadow:0 10px 26px rgba(244,81,30,.32)}
+  .btn-red:hover{background:var(--red-2);box-shadow:0 14px 34px rgba(244,81,30,.42)}
   .btn-dark{background:var(--dark);color:#fff}
   .btn-dark:hover{background:#000}
   .btn-wa{background:var(--green);color:#04310f}
@@ -77,18 +77,23 @@
   .topbar .ic{color:var(--red);margin-right:6px}
   .topbar .rate b{color:#fff}
   .topbar .stars{color:#ffb400;letter-spacing:1px}
-  /* toggles */
-  .tgl{background:transparent;border:1px solid #33383f;color:#cdd0d6;border-radius:8px;height:26px;min-width:34px;padding:0 8px;font-family:'Oswald';font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:5px;transition:.2s;letter-spacing:.5px}
-  .tgl:hover{border-color:var(--red);color:#fff}
+
+  /* toggles (language / theme) — live in the sticky header, always visible */
+  .switches{display:flex;gap:8px;align-items:center}
+  .tgl{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;height:38px;min-width:40px;padding:0 10px;font-family:'Oswald';font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:5px;transition:.2s;letter-spacing:.5px}
+  .tgl:hover{border-color:var(--red);color:var(--red)}
 
   /* header */
   header{position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .3s, background .3s}
   header.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.12)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
-  .logo{display:flex;align-items:center;gap:12px;font-family:'Oswald';font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:1px;color:var(--ink)}
-  .logo .mark{width:42px;height:42px;border-radius:10px;background:var(--red);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(225,29,42,.35)}
-  .logo b{color:var(--red)}
-  .nav-links{display:flex;gap:28px;align-items:center}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Oswald';font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:1px;color:var(--ink)}
+  .logo .logo-img{height:46px;width:auto}
+  .logo .logo-text{display:none;align-items:center;gap:4px}
+  .logo.no-img .logo-img{display:none}
+  .logo.no-img .logo-text{display:inline-flex}
+  .logo .logo-text b{color:var(--red)}
+  .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{color:var(--ink);font-size:15px;font-weight:500;transition:color .2s}
   .nav-links a:hover{color:var(--red)}
   .nav-cta{display:flex;gap:10px;align-items:center}
@@ -98,12 +103,12 @@
   .mobile-menu{display:none}
 
   /* hero */
-  .hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;padding:80px 0}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:
-    linear-gradient(90deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%),
-    url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat}
-  .hero-inner{position:relative;z-index:1;max-width:660px}
-  .hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(225,29,42,.15);border:1px solid rgba(225,29,42,.5);color:#ff6b74;padding:7px 15px;border-radius:100px;font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:600;margin-bottom:22px}
+  .hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;padding:80px 0;overflow:hidden}
+  .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%)}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-inner{max-width:660px}
+  .hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(244,81,30,.16);border:1px solid rgba(244,81,30,.5);color:#ff8a5c;padding:7px 15px;border-radius:100px;font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:600;margin-bottom:22px}
   .hero h1{font-size:clamp(38px,6.4vw,72px)}
   .hero h1 .hl{color:var(--red)}
   .hero p.sub{color:#d3d6dd;font-size:19px;margin:22px 0 32px;max-width:540px}
@@ -157,16 +162,27 @@
   .stat b{font-family:'Oswald';font-size:clamp(34px,4vw,48px);color:var(--red);display:block;line-height:1}
   .stat span{color:#aeb2bb;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-top:6px;display:block}
 
-  /* reviews */
-  .grid-rev{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
-  .review{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:transform .25s}
+  /* reviews carousel */
+  .rev-carousel{position:relative;margin-top:46px}
+  .rev-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 18px;-ms-overflow-style:none;scrollbar-width:none}
+  .rev-track::-webkit-scrollbar{display:none}
+  .review{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:transform .25s}
   .review:hover{transform:translateY(-5px)}
-  .review .stars{color:#ffb400;font-size:16px;margin-bottom:12px}
-  .review p{color:var(--ink);opacity:.85;font-size:15px;flex-grow:1}
+  .review .g{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .review .stars{color:#ffb400;font-size:16px}
+  .review .gg{font-size:20px;opacity:.9}
+  .review p{color:var(--ink);opacity:.88;font-size:15px;flex-grow:1}
   .review .who{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
-  .avatar{width:44px;height:44px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff;font-family:'Oswald';font-weight:700;font-size:17px}
+  .avatar{width:44px;height:44px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff;font-family:'Oswald';font-weight:700;font-size:17px;flex-shrink:0}
   .review .name{font-weight:600;font-size:15px;color:var(--ink)}
   .review .meta{color:var(--grey);font-size:12px}
+  .rev-nav{position:absolute;top:38%;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:20px;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-sm);z-index:3;transition:.2s}
+  .rev-nav:hover{background:var(--red);color:#fff;border-color:var(--red)}
+  .rev-nav.prev{left:-8px}
+  .rev-nav.next{right:-8px}
+  .rev-dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
+  .rev-dots button{width:9px;height:9px;border-radius:50%;border:none;background:var(--line);cursor:pointer;transition:.2s;padding:0}
+  .rev-dots button.active{background:var(--red);width:24px;border-radius:6px}
   .rev-cta{text-align:center;margin-top:38px}
 
   /* gallery */
@@ -206,8 +222,9 @@
 
   /* final cta */
   .final{position:relative;color:#fff;text-align:center;padding:96px 0;overflow:hidden}
-  .final-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(rgba(225,29,42,.90),rgba(184,20,31,.94)),url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1600&q=80') center/cover}
-  .final .wrap{position:relative;z-index:1}
+  .final-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .final-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(244,81,30,.90),rgba(212,62,18,.94))}
+  .final .wrap{position:relative;z-index:2}
   .final h2{font-size:clamp(30px,5vw,50px)}
   .final p{max-width:560px;margin:16px auto 30px;font-size:18px;color:#ffe3e5}
   .final-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -216,6 +233,7 @@
   footer{background:var(--dark);color:#aeb2bb;padding:60px 0 28px}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:36px}
   .foot-grid p{font-size:14px;margin-top:14px;max-width:300px}
+  .foot-logo .logo-img{height:44px}
   .foot h4{color:#fff;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:16px;margin-bottom:16px}
   .foot-links{display:grid;gap:10px}
   .foot-links a{font-size:14px}
@@ -232,31 +250,38 @@
   .mobile-bar{display:none}
 
   /* ===== Arabic / RTL ===== */
-  html[lang="ar"] body,
-  html[lang="ar"] .btn,
-  html[lang="ar"] .logo,
+  html[lang="ar"] body{font-family:'Cairo',sans-serif}
   html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .display,
-  html[lang="ar"] .eyebrow,html[lang="ar"] .brands .lbl,html[lang="ar"] .brands .brand,
-  html[lang="ar"] .hero .tag,html[lang="ar"] .hero-badges .b b,html[lang="ar"] .stat b,
-  html[lang="ar"] .foot h4,html[lang="ar"] .faq summary,html[lang="ar"] .info-row .lbl,
-  html[lang="ar"] .tgl{font-family:'Cairo',sans-serif}
+  html[lang="ar"] .eyebrow,html[lang="ar"] .btn,html[lang="ar"] .hero .tag,
+  html[lang="ar"] .brands .lbl,html[lang="ar"] .foot h4,html[lang="ar"] .faq summary,
+  html[lang="ar"] .info-row .lbl,html[lang="ar"] .hero-badges .b span,html[lang="ar"] .stat span,
+  html[lang="ar"] .serv .more,html[lang="ar"] .logo,html[lang="ar"] .tgl{font-family:'Cairo',sans-serif}
   html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .display,
   html[lang="ar"] .eyebrow,html[lang="ar"] .btn,html[lang="ar"] .hero .tag,
   html[lang="ar"] .brands .lbl,html[lang="ar"] .foot h4,html[lang="ar"] .faq summary,
   html[lang="ar"] .info-row .lbl,html[lang="ar"] .hero-badges .b span,html[lang="ar"] .stat span,
   html[lang="ar"] .serv .more{text-transform:none;letter-spacing:normal}
+
+  /* RTL — flip text alignment and directional details */
+  [dir="rtl"]{text-align:right}
+  [dir="rtl"] .center{text-align:center}
+  [dir="rtl"] .lead,[dir="rtl"] .hero p.sub,[dir="rtl"] .serv p,[dir="rtl"] .review p,
+  [dir="rtl"] .faq .ans,[dir="rtl"] .foot-grid p{text-align:right}
   [dir="rtl"] .topbar .ic{margin-right:0;margin-left:6px}
+  [dir="rtl"] .eyebrow::before{margin-right:0}
   [dir="rtl"] .serv .ph .num{left:auto;right:14px}
-  [dir="rtl"] .eyebrow::before{margin-left:0}
-  [dir="rtl"] .hero-bg{background:
-    linear-gradient(270deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%),
-    url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat}
+  [dir="rtl"] .rev-nav.prev{left:auto;right:-8px}
+  [dir="rtl"] .rev-nav.next{right:auto;left:-8px}
+  [dir="rtl"] .hero-overlay{background:linear-gradient(270deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%)}
   [dir="rtl"] .floaters{right:auto;left:18px}
+  [dir="rtl"] .why-list li{flex-direction:row}
+  [dir="rtl"] .final p{margin-left:auto;margin-right:auto}
   .ltr{direction:ltr;unicode-bidi:embed;display:inline-block}
 
   @media(max-width:960px){
     .why-grid,.book-grid{grid-template-columns:1fr}
-    .grid-serv,.grid-rev{grid-template-columns:1fr 1fr}
+    .grid-serv{grid-template-columns:1fr 1fr}
+    .review{flex-basis:calc((100% - 24px)/2)}
     .foot-grid{grid-template-columns:1fr 1fr}
     .nav-links{display:none}
     .nav-cta .btn.desk{display:none}
@@ -268,13 +293,16 @@
   }
   @media(max-width:640px){
     section{padding:60px 0}
-    .grid-serv,.grid-rev,.foot-grid,.form-row{grid-template-columns:1fr}
+    .grid-serv,.foot-grid,.form-row{grid-template-columns:1fr}
+    .review{flex-basis:88%}
+    .rev-nav{display:none}
     .stats{grid-template-columns:1fr 1fr;gap:28px}
     .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
     .gallery .big{grid-column:span 2;grid-row:span 1}
     .hero{min-height:auto}
     body{padding-bottom:64px}
     .floaters{bottom:76px}
+    .tgl{height:34px;min-width:34px;padding:0 7px;font-size:13px}
     .mobile-bar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:65;border-top:1px solid var(--line)}
     .mobile-bar a{flex:1;padding:16px;text-align:center;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-weight:600;font-size:15px;color:#fff}
     .mobile-bar .call{background:var(--red)}
@@ -294,8 +322,6 @@
     </div>
     <div class="tb-right">
       <span class="rate"><span class="stars">★★★★★</span> <b>4.9</b> · <span class="ltr">1,548</span> <span data-i18n="top.reviews">reviews</span></span>
-      <button class="tgl" id="langBtn" aria-label="Language">ع</button>
-      <button class="tgl" id="themeBtn" aria-label="Theme">🌙</button>
     </div>
   </div>
 </div>
@@ -303,7 +329,10 @@
 <!-- HEADER -->
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="logo"><span class="mark">◎</span> Milad <b>Jamali</b> Tyres</a>
+    <a href="#top" class="logo" id="logoTop">
+      <img class="logo-img" src="assets/logo.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+      <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
+    </a>
     <nav class="nav-links">
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#why" data-i18n="nav.why">Why Us</a>
@@ -312,8 +341,12 @@
       <a href="#book" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="nav-cta">
+      <div class="switches">
+        <button class="tgl" id="langBtn" aria-label="Language">ع</button>
+        <button class="tgl" id="themeBtn" aria-label="Theme">🌙</button>
+      </div>
       <a href="tel:+971503945285" class="btn btn-outline desk" data-i18n="btn.call">📞 Call</a>
-      <a href="#book" class="btn btn-red" data-i18n="btn.book">Book Appointment</a>
+      <a href="#book" class="btn btn-red desk" data-i18n="btn.book">Book Appointment</a>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -330,12 +363,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <img class="hero-photo" src="assets/hero.jpg" alt="Milad Jamali Tyres workshop, Al Quoz Dubai" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1800&q=80'">
+  <div class="hero-overlay"></div>
   <div class="wrap">
     <div class="hero-inner">
       <span class="tag reveal" data-i18n="hero.tag">Al Quoz · Dubai · Open 24 Hours</span>
       <h1 class="reveal" data-i18n="hero.h1">Premium Tyre Care, <span class="hl">Any Hour</span> Of The Day.</h1>
-      <p class="sub reveal" data-i18n="hero.sub">Fast, honest tyre repair, fitting, wheel balancing and new tyres — trusted by 1,548+ drivers across Dubai. No appointment needed.</p>
+      <p class="sub reveal" data-i18n="hero.sub">Fast, honest tyre repair, fitting, wheel balancing and brand-new tyres — trusted by 1,548+ drivers across Dubai. No appointment needed.</p>
       <div class="hero-ctas reveal">
         <a href="#services" class="btn btn-red" data-i18n="hero.cta1">Our Services</a>
         <a href="#book" class="btn btn-ghost" data-i18n="hero.cta2">Book Appointment</a>
@@ -367,33 +401,45 @@
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow" data-i18n="serv.eyebrow">What we do</span>
-      <h2 class="h-sec" data-i18n="serv.title">Complete Tyre Services</h2>
+      <h2 class="h-sec" data-i18n="serv.title">Complete Tyre &amp; Car Care</h2>
       <p class="lead" style="margin:0 auto" data-i18n="serv.lead">Everything your wheels need, under one roof — at any hour of the day or night.</p>
     </div>
     <div class="grid-serv">
       <article class="serv reveal">
-        <div class="ph"><span class="num">01</span><img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=700&q=80" alt="Puncture repair" loading="lazy"></div>
+        <div class="ph"><span class="num">01</span><img src="assets/interior.jpg" alt="Puncture repair" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=700&q=80'"></div>
         <div class="body"><h3 data-i18n="serv1.t">Puncture Repair</h3><p data-i18n="serv1.d">Quick, reliable flat-tyre and puncture repairs to get you moving again in minutes.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">02</span><img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=700&q=80" alt="Tyre fitting" loading="lazy"></div>
+        <div class="ph"><span class="num">02</span><img src="assets/tyre-stacks.jpg" alt="Tyre fitting" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=700&q=80'"></div>
         <div class="body"><h3 data-i18n="serv2.t">Tyre Fitting</h3><p data-i18n="serv2.d">Professional fitting of new and replacement tyres for all car and SUV models.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">03</span><img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=700&q=80" alt="Wheel balancing" loading="lazy"></div>
-        <div class="body"><h3 data-i18n="serv3.t">Wheel Balancing</h3><p data-i18n="serv3.d">Precise balancing to remove vibration and extend the life of your tyres.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+        <div class="ph"><span class="num">03</span><img src="assets/alignment.jpg" alt="Wheel balancing and alignment" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv3.t">Wheel Balancing &amp; Alignment</h3><p data-i18n="serv3.d">Precise balancing and alignment to remove vibration and extend the life of your tyres.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">04</span><img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=700&q=80" alt="New and used tyres" loading="lazy"></div>
-        <div class="body"><h3 data-i18n="serv4.t">New &amp; Used Tyres</h3><p data-i18n="serv4.d">A wide range of quality tyres to suit every vehicle and every budget.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+        <div class="ph"><span class="num">04</span><img src="assets/tyre-wall.jpg" alt="Brand new tyres" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv4.t">New Tyres</h3><p data-i18n="serv4.d">A wide range of quality brand-new tyres for every vehicle — all major brands in stock.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">05</span><img src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=700&q=80" alt="24/7 roadside help" loading="lazy"></div>
-        <div class="body"><h3 data-i18n="serv5.t">24/7 Roadside Help</h3><p data-i18n="serv5.d">Stuck late at night? We provide round-the-clock tyre support when you need it most.</p><a href="tel:+971503945285" class="more" data-i18n="cta.callnow">Call now →</a></div>
+        <div class="ph"><span class="num">05</span><img src="assets/mechanic.jpg" alt="TPMS sensor change and checking" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv5.t">TPMS Sensor Change &amp; Checking</h3><p data-i18n="serv5.d">Replacing and checking tyre-pressure sensors for accurate readings and full safety.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">06</span><img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=700&q=80" alt="Air and pressure check" loading="lazy"></div>
-        <div class="body"><h3 data-i18n="serv6.t">Air &amp; Pressure Check</h3><p data-i18n="serv6.d">Fast nitrogen/air top-ups and pressure checks to keep you safe on Dubai roads.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+        <div class="ph"><span class="num">06</span><img src="assets/nitrogen.jpg" alt="Nitrogen air filling" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv6.t">Nitrogen Air Filling</h3><p data-i18n="serv6.d">Nitrogen tyre inflation that holds pressure longer for safer, smoother driving.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+      </article>
+      <article class="serv reveal">
+        <div class="ph"><span class="num">07</span><img src="assets/batteries.jpg" alt="New car battery" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv7.t">New Battery</h3><p data-i18n="serv7.d">New car batteries from trusted brands, tested and fitted on the spot.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+      </article>
+      <article class="serv reveal">
+        <div class="ph"><span class="num">08</span><img src="assets/alignment.jpg" alt="New brake pads" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv8.t">New Brake Pad</h3><p data-i18n="serv8.d">Brake-pad replacement with high-quality parts for safe, reliable stopping.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
+      </article>
+      <article class="serv reveal">
+        <div class="ph"><span class="num">09</span><img src="assets/storefront.jpg" alt="24/7 roadside help" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="body"><h3 data-i18n="serv9.t">24/7 Roadside Help</h3><p data-i18n="serv9.d">Stuck late at night? We provide round-the-clock tyre support when you need it most.</p><a href="tel:+971503945285" class="more" data-i18n="cta.callnow">Call now →</a></div>
       </article>
     </div>
   </div>
@@ -416,7 +462,7 @@
         <a href="#book" class="btn btn-red" data-i18n="why.cta">Book Your Visit</a>
       </div>
       <div class="why-img reveal">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80" alt="Friendly team, honest service">
+        <img src="assets/whyshop.jpg" alt="Milad Jamali Tyres storefront in Al Quoz, Dubai" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80'">
       </div>
     </div>
     <div class="stats">
@@ -436,23 +482,60 @@
       <h2 class="h-sec" data-i18n="rev.title">Loved By Dubai Drivers</h2>
       <p class="lead" style="margin:0 auto" data-i18n="rev.lead">Rated 4.9★ across 1,548 verified Google reviews.</p>
     </div>
-    <div class="grid-rev">
-      <article class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="rev1.t">"Professional and efficient service from the moment I arrived to the completion of the work. They made sure the tyres were fitted correctly and balanced well. Very positive experience."</p>
-        <div class="who"><div class="avatar">N</div><div><div class="name">Nikil</div><div class="meta" data-i18n="rev1.m">Local Guide · 26 reviews</div></div></div>
-      </article>
-      <article class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="rev2.t">"Hamide is doing a great job and providing very good service. He is professional, helpful, and reliable. Highly recommended."</p>
-        <div class="who"><div class="avatar">A</div><div><div class="name">Ahmad Tousef</div><div class="meta" data-i18n="rev2.m">Local Guide · 19 reviews</div></div></div>
-      </article>
-      <article class="review reveal">
-        <div class="stars">★★★★★</div>
-        <p data-i18n="rev3.t">"Mr. Muhsin — one of the best service providers in Al Quoz. Best pricing and 24/7 service. Friendly staff and environment. Great knowledge of what they do."</p>
-        <div class="who"><div class="avatar">A</div><div><div class="name">Adhil Ashraf</div><div class="meta" data-i18n="rev3.m">6 reviews · 1 photo</div></div></div>
-      </article>
+
+    <div class="rev-carousel reveal">
+      <button class="rev-nav prev" id="revPrev" aria-label="Previous">‹</button>
+      <button class="rev-nav next" id="revNext" aria-label="Next">›</button>
+      <div class="rev-track" id="revTrack">
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev1.t">"A fantastic experience at the shop thanks to Muhsin. He greeted me warmly, checked my tyres thoroughly and recommended the best solution without trying to upsell. Fast, reasonably priced and very professional."</p>
+          <div class="who"><div class="avatar">M</div><div><div class="name">Verified Customer</div><div class="meta" data-i18n="rev1.m">Google review</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev2.t">"Visited Milad Jamali for mechanical work. Mr Kasim assisted me, diagnosed the problem and fixed it in no time. Highly recommend this place — Mr Kasim is simply superb!"</p>
+          <div class="who"><div class="avatar">G</div><div><div class="name">g1jeetu</div><div class="meta" data-i18n="rev2.m">Local Guide · 2 reviews · 60 photos</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev3.t">"A very good experience at this car store. Fast, professional and reasonably priced. Mohsin did a fantastic job and fixed the issue within just five minutes."</p>
+          <div class="who"><div class="avatar">A</div><div><div class="name">Azeem</div><div class="meta" data-i18n="rev3.m">4 reviews · 1 photo</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev4.t">"Mr Hamdan is a very good person and very knowledgeable about cars. ❤️"</p>
+          <div class="who"><div class="avatar">A</div><div><div class="name">Ahmed Zerati</div><div class="meta" data-i18n="rev4.m">5 reviews · 3 photos</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev5.t">"Best ever service by Mr Mohsin. Highly recommend! Even available at 3am — thank you for saving our night!"</p>
+          <div class="who"><div class="avatar">M</div><div><div class="name">Mujtaba Abbas</div><div class="meta" data-i18n="rev5.m">6 reviews · 1 photo</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev6.t">"Good service, nice staff. Thanks Mohsin!"</p>
+          <div class="who"><div class="avatar">N</div><div><div class="name">Nufas Muhammed</div><div class="meta" data-i18n="rev6.m">1 review · 1 photo</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev7.t">"Great service, JazakAllah! Khairullah helped us at 3:40 AM and saved our night."</p>
+          <div class="who"><div class="avatar">S</div><div><div class="name">Syed Raid</div><div class="meta" data-i18n="rev7.m">4 reviews · 1 photo</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev8.t">"Mohsin provided very good service, along with the friendly boy in the cap."</p>
+          <div class="who"><div class="avatar">M</div><div><div class="name">Mohit Dxb</div><div class="meta" data-i18n="rev8.m">3 reviews · 2 photos</div></div></div>
+        </article>
+        <article class="review">
+          <div class="g"><div class="stars">★★★★★</div><div class="gg">🇬</div></div>
+          <p data-i18n="rev9.t">"Mr Hamdan is very courteous and polite. Good service and a nice discount offered."</p>
+          <div class="who"><div class="avatar">A</div><div><div class="name">Ammi Rodrigues</div><div class="meta" data-i18n="rev9.m">5 reviews · 1 photo</div></div></div>
+        </article>
+      </div>
+      <div class="rev-dots" id="revDots"></div>
     </div>
+
     <div class="rev-cta reveal">
       <a href="https://www.google.com/maps/place/Milad+Jamali+Tyres/@25.1648201,55.2455127,17z" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="rev.more">Read all 1,548 reviews on Google →</a>
     </div>
@@ -467,11 +550,11 @@
       <h2 class="h-sec" data-i18n="gal.title">Inside The Garage</h2>
     </div>
     <div class="gallery">
-      <a class="big reveal"><img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=900&q=80" alt="Tyre stock"></a>
-      <a class="reveal"><img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=500&q=80" alt="Wheel and rim"></a>
-      <a class="reveal"><img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=500&q=80" alt="Mechanic at work"></a>
-      <a class="reveal"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80" alt="Workshop"></a>
-      <a class="reveal"><img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=500&q=80" alt="Rows of tyres"></a>
+      <a class="big reveal"><img src="assets/porsche.jpg" alt="Premium sports car serviced at Milad Jamali Tyres" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=900&q=80'"></a>
+      <a class="reveal"><img src="assets/tyre-stacks.jpg" alt="Tyres in stock" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=500&q=80'"></a>
+      <a class="reveal"><img src="assets/batteries.jpg" alt="Batteries and wheel spacers" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=500&q=80'"></a>
+      <a class="reveal"><img src="assets/alignment.jpg" alt="Wheel alignment ramps" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80'"></a>
+      <a class="reveal"><img src="assets/interior.jpg" alt="Workshop interior" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=500&q=80'"></a>
     </div>
   </div>
 </section>
@@ -487,7 +570,7 @@
       <details class="faq reveal" open><summary><span data-i18n="faq1.q">Are you really open 24/7?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq1.a">Yes — we're open 24 hours a day, every day of the year. Whether it's a midnight puncture or an early-morning start, just drive in or call us on 050 394 5285.</div></details>
       <details class="faq reveal"><summary><span data-i18n="faq2.q">Do I need an appointment?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq2.a">No appointment needed — walk-ins are always welcome. You can also book ahead using the form below or a quick WhatsApp message so we have everything ready for you.</div></details>
       <details class="faq reveal"><summary><span data-i18n="faq3.q">Where are you located?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq3.a">We're at 47-1 Al Hajar Road, Al Quoz Third, Al Quoz, Dubai — easy to reach from all over the city. Tap the map below for directions.</div></details>
-      <details class="faq reveal"><summary><span data-i18n="faq4.q">What services do you offer?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq4.a">Puncture repair, new &amp; used tyre fitting, wheel balancing, air/nitrogen top-ups, pressure checks and 24/7 roadside tyre support for cars and SUVs.</div></details>
+      <details class="faq reveal"><summary><span data-i18n="faq4.q">What services do you offer?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq4.a">Puncture repair, brand-new tyre fitting, wheel balancing &amp; alignment, TPMS sensor change, nitrogen air filling, new batteries, new brake pads and 24/7 roadside tyre support for cars and SUVs.</div></details>
       <details class="faq reveal"><summary><span data-i18n="faq5.q">How much does a tyre repair cost?</span><span class="plus">+</span></summary><div class="ans" data-i18n="faq5.a">Our pricing is honest and transparent — it's one of the things customers mention most in reviews. Call or WhatsApp us with your car and tyre size for a quick quote.</div></details>
     </div>
   </div>
@@ -513,13 +596,17 @@
               <option value="" data-i18n="form.service">Select service…</option>
               <option data-i18n="serv1.t">Puncture Repair</option>
               <option data-i18n="serv2.t">Tyre Fitting</option>
-              <option data-i18n="serv3.t">Wheel Balancing</option>
-              <option data-i18n="serv4.t">New / Used Tyres</option>
-              <option data-i18n="serv5.t">24/7 Roadside Help</option>
-              <option data-i18n="serv6.t">Air / Pressure Check</option>
+              <option data-i18n="serv3.t">Wheel Balancing &amp; Alignment</option>
+              <option data-i18n="serv4.t">New Tyres</option>
+              <option data-i18n="serv5.t">TPMS Sensor Change &amp; Checking</option>
+              <option data-i18n="serv6.t">Nitrogen Air Filling</option>
+              <option data-i18n="serv7.t">New Battery</option>
+              <option data-i18n="serv8.t">New Brake Pad</option>
+              <option data-i18n="serv9.t">24/7 Roadside Help</option>
             </select>
             <input type="text" id="fcar" placeholder="Car model (optional)" data-i18n-ph="form.car" />
           </div>
+          <input type="text" id="fsize" placeholder="Tyre size — e.g. 205/55 R16 (if known)" data-i18n-ph="form.size" />
           <textarea id="fmsg" placeholder="Anything else we should know?" data-i18n-ph="form.msg"></textarea>
           <button type="submit" class="btn btn-red" style="width:100%" data-i18n="form.submit">Send Booking via WhatsApp</button>
           <p class="form-note" data-i18n="form.note">Opens WhatsApp with your booking details pre-filled.</p>
@@ -542,7 +629,8 @@
 
 <!-- FINAL CTA -->
 <section class="final">
-  <div class="final-bg"></div>
+  <img class="final-photo" src="assets/interior.jpg" alt="" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1600&q=80'">
+  <div class="final-overlay"></div>
   <div class="wrap reveal">
     <h2 data-i18n="final.title">Flat Tyre? We're Open Right Now.</h2>
     <p data-i18n="final.p">No appointment needed. Call us or drop a WhatsApp and we'll get you back on the road — day or night.</p>
@@ -558,8 +646,11 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="#top" class="logo" style="color:#fff"><span class="mark">◎</span> Milad <b>Jamali</b> Tyres</a>
-        <p data-i18n="foot.about">24/7 tyre repair, fitting, balancing &amp; new tyres in Al Quoz, Dubai. Rated 4.9★ by 1,548 drivers.</p>
+        <a href="#top" class="logo foot-logo" style="color:#fff">
+          <img class="logo-img" src="assets/logo.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+          <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
+        </a>
+        <p data-i18n="foot.about">24/7 tyre repair, fitting, balancing &amp; brand-new tyres in Al Quoz, Dubai. Rated 4.9★ by 1,548 drivers.</p>
         <div class="socials">
           <a href="https://wa.me/971503945285" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
           <a href="tel:+971503945285" aria-label="Phone">📞</a>
@@ -571,8 +662,8 @@
         <div class="foot-links">
           <a href="#services" data-i18n="serv1.t">Puncture Repair</a>
           <a href="#services" data-i18n="serv2.t">Tyre Fitting</a>
-          <a href="#services" data-i18n="serv3.t">Wheel Balancing</a>
           <a href="#services" data-i18n="serv4.t">New Tyres</a>
+          <a href="#services" data-i18n="serv7.t">New Battery</a>
         </div>
       </div>
       <div class="foot">
@@ -624,18 +715,21 @@
     "btn.call":"📞 اتصل","btn.book":"احجز موعد",
     "hero.tag":"القوز · دبي · مفتوح ٢٤ ساعة",
     "hero.h1":"عناية احترافية بالإطارات، <span class=\"hl\">في أي ساعة</span> من اليوم.",
-    "hero.sub":"إصلاح إطارات سريع وصادق، تركيب، ترصيص وإطارات جديدة — يثق بنا أكثر من ١٬٥٤٨ سائقًا في دبي. لا حاجة لموعد مسبق.",
+    "hero.sub":"إصلاح إطارات سريع وصادق، تركيب، ترصيص وإطارات جديدة تمامًا — يثق بنا أكثر من ١٬٥٤٨ سائقًا في دبي. لا حاجة لموعد مسبق.",
     "hero.cta1":"خدماتنا","hero.cta2":"احجز موعد",
     "hero.b1":"تقييم جوجل","hero.b2":"تقييم","hero.b3":"مفتوح دائمًا",
     "brands.label":"نركّب جميع العلامات الكبرى:",
-    "serv.eyebrow":"ماذا نقدّم","serv.title":"خدمات إطارات متكاملة",
+    "serv.eyebrow":"ماذا نقدّم","serv.title":"عناية متكاملة بالإطارات والسيارة",
     "serv.lead":"كل ما تحتاجه عجلاتك تحت سقف واحد — في أي ساعة ليلًا أو نهارًا.",
     "serv1.t":"إصلاح الثقوب","serv1.d":"إصلاح سريع وموثوق للإطارات المثقوبة لتعود إلى الطريق خلال دقائق.",
     "serv2.t":"تركيب الإطارات","serv2.d":"تركيب احترافي للإطارات الجديدة والبديلة لجميع السيارات والدفع الرباعي.",
-    "serv3.t":"ترصيص العجلات","serv3.d":"ترصيص دقيق لإزالة الاهتزاز وإطالة عمر إطاراتك.",
-    "serv4.t":"إطارات جديدة ومستعملة","serv4.d":"تشكيلة واسعة من الإطارات عالية الجودة تناسب كل سيارة وكل ميزانية.",
-    "serv5.t":"مساعدة على الطريق ٢٤/٧","serv5.d":"عالق في وقت متأخر؟ نوفّر دعم إطارات على مدار الساعة عندما تحتاجه أكثر.",
-    "serv6.t":"فحص الهواء والضغط","serv6.d":"تعبئة نيتروجين/هواء سريعة وفحص الضغط لسلامتك على طرق دبي.",
+    "serv3.t":"ترصيص وضبط زوايا العجلات","serv3.d":"ترصيص وضبط دقيق لإزالة الاهتزاز وإطالة عمر إطاراتك.",
+    "serv4.t":"إطارات جديدة","serv4.d":"تشكيلة واسعة من الإطارات الجديدة عالية الجودة لكل سيارة — جميع العلامات الكبرى متوفرة.",
+    "serv5.t":"تغيير وفحص حساس ضغط الإطارات (TPMS)","serv5.d":"استبدال وفحص حساسات ضغط الإطارات لضمان قراءات دقيقة وأمان تام.",
+    "serv6.t":"تعبئة النيتروجين","serv6.d":"تعبئة الإطارات بالنيتروجين للحفاظ على الضغط لفترة أطول وقيادة أكثر أمانًا وسلاسة.",
+    "serv7.t":"بطارية جديدة","serv7.d":"بطاريات سيارات جديدة من علامات موثوقة، تُفحص وتُركّب في مكانها.",
+    "serv8.t":"تيل فرامل جديد","serv8.d":"استبدال تيل الفرامل بقطع عالية الجودة لتوقّف آمن وموثوق.",
+    "serv9.t":"مساعدة على الطريق ٢٤/٧","serv9.d":"عالق في وقت متأخر؟ نوفّر دعم إطارات على مدار الساعة عندما تحتاجه أكثر.",
     "cta.booknow":"احجز الآن ←","cta.callnow":"اتصل الآن ←",
     "why.eyebrow":"لماذا يختارنا السائقون","why.title":"أكثر من مجرد محل إطارات",
     "why.lead":"الإطار المثقوب لا ينتظر ساعات العمل — ونحن كذلك. أصبحنا من أكثر ورش القوز ثقة لأننا نتقن الأساسيات ببساطة.",
@@ -647,12 +741,24 @@
     "stat1":"تقييم جوجل ★","stat2":"عميل سعيد","stat3":"مفتوح دائمًا","stat4":"متوسط زمن الإصلاح",
     "rev.eyebrow":"تقييمات جوجل حقيقية","rev.title":"محبوبون من سائقي دبي",
     "rev.lead":"تقييم ٤٫٩★ عبر ١٬٥٤٨ تقييمًا موثّقًا على جوجل.",
-    "rev1.t":"«خدمة احترافية وسريعة منذ لحظة وصولي حتى إتمام العمل. تأكدوا من تركيب الإطارات بشكل صحيح وترصيصها جيدًا. تجربة إيجابية جدًا.»",
-    "rev1.m":"مرشد محلي · ٢٦ تقييم",
-    "rev2.t":"«حميدة يقدّم عملاً رائعًا وخدمة ممتازة. محترف ومتعاون وموثوق. أنصح به بشدة.»",
-    "rev2.m":"مرشد محلي · ١٩ تقييم",
-    "rev3.t":"«السيد محسن — من أفضل مقدّمي الخدمة في القوز. أفضل الأسعار وخدمة ٢٤/٧. طاقم ودود وبيئة رائعة ومعرفة كبيرة بعملهم.»",
-    "rev3.m":"٦ تقييمات · صورة واحدة",
+    "rev1.t":"«تجربة رائعة في المحل بفضل محسن. استقبلني بترحاب، فحص إطاراتي بدقة ونصحني بأفضل حل دون أي مبالغة في البيع. سريع وسعره مناسب واحترافي جدًا.»",
+    "rev1.m":"تقييم على جوجل",
+    "rev2.t":"«زرت ميلاد جمالي لعمل ميكانيكي. ساعدني السيد قاسم، شخّص المشكلة وأصلحها في وقت قياسي. أنصح بالمكان بشدة — السيد قاسم ممتاز!»",
+    "rev2.m":"مرشد محلي · ٢ تقييم · ٦٠ صورة",
+    "rev3.t":"«تجربة جيدة جدًا في هذا المركز. سريع ومحترف وبسعر مناسب. قام محسن بعمل رائع وأصلح المشكلة خلال خمس دقائق فقط.»",
+    "rev3.m":"٤ تقييمات · صورة واحدة",
+    "rev4.t":"«السيد حمدان شخص طيب جدًا وواسع المعرفة بالسيارات. ❤️»",
+    "rev4.m":"٥ تقييمات · ٣ صور",
+    "rev5.t":"«أفضل خدمة على الإطلاق من السيد محسن. أنصح به بشدة! متوفّر حتى الساعة ٣ فجرًا — شكرًا لإنقاذ ليلتنا!»",
+    "rev5.m":"٦ تقييمات · صورة واحدة",
+    "rev6.t":"«خدمة جيدة وطاقم لطيف. شكرًا محسن!»",
+    "rev6.m":"تقييم واحد · صورة واحدة",
+    "rev7.t":"«خدمة رائعة، جزاكم الله خيرًا! ساعدنا خير الله في الساعة ٣:٤٠ فجرًا وأنقذ ليلتنا.»",
+    "rev7.m":"٤ تقييمات · صورة واحدة",
+    "rev8.t":"«قدّم محسن خدمة ممتازة، مع الشاب اللطيف صاحب القبعة.»",
+    "rev8.m":"٣ تقييمات · صورتان",
+    "rev9.t":"«السيد حمدان مهذّب ولبق جدًا. خدمة جيدة مع خصم لطيف.»",
+    "rev9.m":"٥ تقييمات · صورة واحدة",
     "rev.more":"اقرأ كل ١٬٥٤٨ تقييمًا على جوجل ←",
     "gal.eyebrow":"ورشتنا","gal.title":"داخل الورشة",
     "faq.eyebrow":"معلومات مفيدة","faq.title":"الأسئلة الشائعة",
@@ -663,12 +769,12 @@
     "faq3.q":"أين موقعكم؟",
     "faq3.a":"نحن في ٤٧-١ شارع الحجر، القوز الثالثة، دبي — يسهل الوصول إلينا من جميع أنحاء المدينة. اضغط على الخريطة أدناه للاتجاهات.",
     "faq4.q":"ما الخدمات التي تقدّمونها؟",
-    "faq4.a":"إصلاح الثقوب، تركيب إطارات جديدة ومستعملة، ترصيص العجلات، تعبئة هواء/نيتروجين، فحص الضغط، ودعم إطارات على الطريق ٢٤/٧ للسيارات والدفع الرباعي.",
+    "faq4.a":"إصلاح الثقوب، تركيب إطارات جديدة، ترصيص وضبط زوايا العجلات، تغيير حساس ضغط الإطارات (TPMS)، تعبئة نيتروجين، بطاريات جديدة، تيل فرامل جديد، ودعم إطارات على الطريق ٢٤/٧ للسيارات والدفع الرباعي.",
     "faq5.q":"كم تكلفة إصلاح الإطار؟",
     "faq5.a":"أسعارنا صادقة وشفافة — وهذا ما يذكره العملاء كثيرًا في التقييمات. اتصل أو راسلنا على واتساب بنوع سيارتك ومقاس الإطار للحصول على سعر سريع.",
     "book.eyebrow":"تواصل معنا","book.title":"احجز موعدك",
     "book.lead":"اترك بياناتك وسنؤكّد عبر واتساب — أو تفضّل بالحضور مباشرة، نحن مفتوحون دائمًا.",
-    "form.name":"اسمك","form.phone":"رقم الهاتف","form.service":"اختر الخدمة…","form.car":"موديل السيارة (اختياري)","form.msg":"أي شيء آخر يجب أن نعرفه؟",
+    "form.name":"اسمك","form.phone":"رقم الهاتف","form.service":"اختر الخدمة…","form.car":"موديل السيارة (اختياري)","form.size":"مقاس الإطار — مثال: 205/55 R16 (إن وُجد)","form.msg":"أي شيء آخر يجب أن نعرفه؟",
     "form.submit":"أرسل الحجز عبر واتساب","form.note":"يفتح واتساب مع تفاصيل حجزك جاهزة.",
     "info.addr.l":"العنوان","info.addr.v":"٤٧-١ شارع الحجر، القوز الثالثة، دبي",
     "info.phone.l":"الهاتف","info.wa.v":"تحدّث معنا فورًا",
@@ -676,7 +782,7 @@
     "final.title":"إطار مثقوب؟ نحن مفتوحون الآن.",
     "final.p":"لا حاجة لموعد. اتصل أو راسلنا على واتساب وسنعيدك إلى الطريق — ليلًا أو نهارًا.",
     "final.cta1":"📞 اتصل ٠٥٠ ٣٩٤ ٥٢٨٥","final.cta2":"💬 راسلنا واتساب",
-    "foot.about":"إصلاح وتركيب وترصيص وإطارات جديدة ٢٤/٧ في القوز، دبي. تقييم ٤٫٩★ من ١٬٥٤٨ سائقًا.",
+    "foot.about":"إصلاح وتركيب وترصيص وإطارات جديدة تمامًا ٢٤/٧ في القوز، دبي. تقييم ٤٫٩★ من ١٬٥٤٨ سائقًا.",
     "foot.h.services":"الخدمات","foot.h.company":"الشركة","foot.h.visit":"زورونا",
     "foot.hours":"مفتوح ٢٤ ساعة · كل يوم",
     "foot.copy":"ميلاد جمالي للإطارات. جميع الحقوق محفوظة.",
@@ -691,7 +797,6 @@
   // cache English
   i18nEls.forEach(el => el._en = el.innerHTML);
   phEls.forEach(el => el._enph = el.getAttribute('placeholder'));
-  const EN_PH = {"form.name":"Your name","form.phone":"Phone number","form.car":"Car model (optional)","form.msg":"Anything else we should know?"};
 
   function applyLang(lang){
     const ar = lang === 'ar';
@@ -736,6 +841,54 @@
   burger.addEventListener('click', () => menu.classList.toggle('open'));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
+  /* ===== reviews carousel ===== */
+  (function revCarousel(){
+    const track = document.getElementById('revTrack');
+    const dotsBox = document.getElementById('revDots');
+    if(!track) return;
+    const cards = [...track.children];
+    const step = () => track.querySelector('.review').getBoundingClientRect().width + 24;
+    const rtl = () => document.documentElement.dir === 'rtl';
+
+    // dots (one per card)
+    cards.forEach((_,i) => {
+      const b = document.createElement('button');
+      b.addEventListener('click', () => track.scrollTo({left:(rtl()?-1:1)*i*step()}));
+      dotsBox.appendChild(b);
+    });
+    const dots = [...dotsBox.children];
+    function syncDots(){
+      const idx = Math.round(Math.abs(track.scrollLeft)/step());
+      dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }
+    track.addEventListener('scroll', syncDots, {passive:true});
+    syncDots();
+
+    function go(dir){ track.scrollBy({left:(rtl()?-1:1)*dir*step()}); }
+    document.getElementById('revPrev').addEventListener('click', () => go(-1));
+    document.getElementById('revNext').addEventListener('click', () => go(1));
+
+    // continuous autoplay — moves by itself; pauses briefly on interaction, then resumes
+    let paused = false, resumeTimer;
+    setInterval(auto, 3800);
+    function auto(){
+      if(paused) return;
+      const max = track.scrollWidth - track.clientWidth - 4;
+      if(Math.abs(track.scrollLeft) >= max) track.scrollTo({left:0});
+      else go(1);
+    }
+    function pauseThenResume(){
+      paused = true;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => paused = false, 6000); // resume 6s after last touch
+    }
+    track.addEventListener('mouseenter', () => paused = true);
+    track.addEventListener('mouseleave', () => paused = false);
+    ['touchstart','pointerdown'].forEach(e => track.addEventListener(e, pauseThenResume, {passive:true}));
+    document.getElementById('revPrev').addEventListener('click', pauseThenResume);
+    document.getElementById('revNext').addEventListener('click', pauseThenResume);
+  })();
+
   /* reveal on scroll */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -770,11 +923,13 @@
     const p = document.getElementById('fphone').value;
     const s = document.getElementById('fservice').value;
     const c = document.getElementById('fcar').value;
+    const sz = document.getElementById('fsize').value;
     const m = document.getElementById('fmsg').value;
     let text = `Hi Milad Jamali Tyres! I'd like to book:%0A`;
     text += `Name: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0A`;
     if (s) text += `Service: ${encodeURIComponent(s)}%0A`;
     if (c) text += `Car: ${encodeURIComponent(c)}%0A`;
+    if (sz) text += `Tyre size: ${encodeURIComponent(sz)}%0A`;
     if (m) text += `Note: ${encodeURIComponent(m)}`;
     window.open(`https://wa.me/971503945285?text=${text}`, '_blank');
     return false;
