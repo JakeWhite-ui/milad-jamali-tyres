@@ -185,6 +185,29 @@
   .rev-dots button.active{background:var(--red);width:24px;border-radius:6px}
   .rev-cta{text-align:center;margin-top:38px}
 
+  /* tyre size calculator */
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:46px}
+  .calc-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
+  .calc-head{font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:14px;color:var(--grey);margin-bottom:16px}
+  .size-inputs{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;direction:ltr}
+  .size-inputs label{display:flex;flex-direction:column;gap:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey);font-family:'Oswald'}
+  .size-inputs select{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--ink);font-family:inherit;font-size:16px;font-weight:600;min-width:76px}
+  .size-inputs select:focus{outline:none;border-color:var(--red)}
+  .size-inputs .sep{font-family:'Oswald';font-size:20px;color:var(--red);padding-bottom:10px}
+  .size-str{font-family:'Oswald';font-size:26px;color:var(--ink);margin:18px 0 8px;letter-spacing:1px;direction:ltr}
+  .specs{list-style:none;display:grid}
+  .specs li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--grey)}
+  .specs li:last-child{border-bottom:none}
+  .specs li b{color:var(--ink);font-weight:600;direction:ltr}
+  .calc-compare{margin-top:24px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:center}
+  .calc-compare .cc{display:flex;flex-direction:column;gap:5px}
+  .calc-compare .cc b{font-family:'Oswald';font-size:26px;color:var(--red);line-height:1;direction:ltr}
+  .calc-compare .cc span{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#aeb2bb}
+  .calc-note{margin-top:16px;text-align:center;font-size:15px;font-weight:600}
+  .calc-note.ok{color:#1f9d55}
+  .calc-note.warn{color:var(--red)}
+  .calc-cta{text-align:center;margin-top:26px}
+
   /* gallery */
   .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;margin-top:46px}
   .gallery a{border-radius:12px;overflow:hidden;position:relative}
@@ -337,6 +360,7 @@
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#why" data-i18n="nav.why">Why Us</a>
       <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
+      <a href="#calc" data-i18n="nav.calc">Size Calc</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#book" data-i18n="nav.contact">Contact</a>
     </nav>
@@ -354,6 +378,7 @@
     <a href="#services" data-i18n="nav.services">Services</a>
     <a href="#why" data-i18n="nav.why">Why Us</a>
     <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
+    <a href="#calc" data-i18n="nav.calc">Size Calc</a>
     <a href="#faq" data-i18n="nav.faq">FAQ</a>
     <a href="#book" data-i18n="nav.contact">Contact</a>
   </div>
@@ -576,6 +601,48 @@
   </div>
 </section>
 
+<!-- TYRE SIZE CALCULATOR -->
+<section id="calc" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow" data-i18n="calc.eyebrow">Handy tool</span>
+      <h2 class="h-sec" data-i18n="calc.title">Tyre Size Calculator</h2>
+      <p class="lead" style="margin:0 auto" data-i18n="calc.lead">Check your tyre's real dimensions and compare it with another size — diameter, sidewall, speedometer difference. Not sure of your size? We'll help you find it.</p>
+    </div>
+    <div class="calc-grid reveal">
+      <div class="calc-card">
+        <div class="calc-head" data-i18n="calc.your">Your tyre size</div>
+        <div class="size-inputs">
+          <label><span data-i18n="calc.width">Width</span><select id="w1"></select></label>
+          <span class="sep">/</span>
+          <label><span data-i18n="calc.ratio">Ratio</span><select id="a1"></select></label>
+          <span class="sep">R</span>
+          <label><span data-i18n="calc.rim">Rim</span><select id="r1"></select></label>
+        </div>
+        <div class="size-str" id="str1">—</div>
+        <ul class="specs" id="specs1"></ul>
+      </div>
+      <div class="calc-card">
+        <div class="calc-head" data-i18n="calc.compare">Compare with (optional)</div>
+        <div class="size-inputs">
+          <label><span data-i18n="calc.width">Width</span><select id="w2"></select></label>
+          <span class="sep">/</span>
+          <label><span data-i18n="calc.ratio">Ratio</span><select id="a2"></select></label>
+          <span class="sep">R</span>
+          <label><span data-i18n="calc.rim">Rim</span><select id="r2"></select></label>
+        </div>
+        <div class="size-str" id="str2">—</div>
+        <ul class="specs" id="specs2"></ul>
+      </div>
+    </div>
+    <div class="calc-compare reveal" id="compareBox"></div>
+    <div class="calc-note reveal" id="calcNote"></div>
+    <div class="calc-cta reveal">
+      <button class="btn btn-red" id="calcReq" data-i18n="calc.req">Request this size on WhatsApp</button>
+    </div>
+  </div>
+</section>
+
 <!-- BOOKING / CONTACT -->
 <section id="book" class="book">
   <div class="wrap">
@@ -760,6 +827,12 @@
     "rev9.t":"«السيد حمدان مهذّب ولبق جدًا. خدمة جيدة مع خصم لطيف.»",
     "rev9.m":"٥ تقييمات · صورة واحدة",
     "rev.more":"اقرأ كل ١٬٥٤٨ تقييمًا على جوجل ←",
+    "nav.calc":"حاسبة المقاس",
+    "calc.eyebrow":"أداة مفيدة","calc.title":"حاسبة مقاس الإطارات",
+    "calc.lead":"تحقّق من الأبعاد الحقيقية لإطارك وقارنه بمقاس آخر — القطر، ارتفاع الجدار، وفرق عداد السرعة. لست متأكدًا من مقاسك؟ سنساعدك في إيجاده.",
+    "calc.your":"مقاس إطارك","calc.compare":"قارن مع (اختياري)",
+    "calc.width":"العرض","calc.ratio":"النسبة","calc.rim":"القطر",
+    "calc.req":"اطلب هذا المقاس عبر واتساب",
     "gal.eyebrow":"ورشتنا","gal.title":"داخل الورشة",
     "faq.eyebrow":"معلومات مفيدة","faq.title":"الأسئلة الشائعة",
     "faq1.q":"هل أنتم مفتوحون فعلاً ٢٤/٧؟",
@@ -812,6 +885,7 @@
     });
     langBtn.textContent = ar ? 'EN' : 'ع';
     localStorage.setItem('mjt-lang', lang);
+    if (window.calcRender) window.calcRender();
   }
   langBtn.addEventListener('click', () => applyLang(document.documentElement.lang === 'ar' ? 'en' : 'ar'));
 
@@ -887,6 +961,67 @@
     ['touchstart','pointerdown'].forEach(e => track.addEventListener(e, pauseThenResume, {passive:true}));
     document.getElementById('revPrev').addEventListener('click', pauseThenResume);
     document.getElementById('revNext').addEventListener('click', pauseThenResume);
+  })();
+
+  /* ===== tyre size calculator ===== */
+  (function tyreCalc(){
+    const box = document.getElementById('calc');
+    if(!box) return;
+    const T = {
+      en:{dia:'Overall diameter',side:'Sidewall height',circ:'Circumference',revs:'Revs / km',
+          diff:'Diameter difference',diffp:'Difference',speedo:'Real speed at 100 km/h',
+          ok:'✓ Within the safe ±3% range — your speedometer stays accurate.',
+          warn:'⚠ Outside ±3% — this changes your speedometer reading. Ask us before fitting.',
+          same:'✓ Same overall diameter — fully interchangeable.'},
+      ar:{dia:'القطر الكلي',side:'ارتفاع الجدار',circ:'المحيط',revs:'دورات / كم',
+          diff:'فرق القطر',diffp:'الفرق',speedo:'السرعة الفعلية عند ١٠٠ كم/س',
+          ok:'✓ ضمن النطاق الآمن ±٣٪ — يبقى عداد السرعة دقيقًا.',
+          warn:'⚠ خارج ±٣٪ — يغيّر قراءة عداد السرعة. استشرنا قبل التركيب.',
+          same:'✓ نفس القطر الكلي — قابلة للتبديل تمامًا.'}
+    };
+    const fill=(sel,arr,def)=>{sel.innerHTML=arr.map(v=>`<option${v===def?' selected':''}>${v}</option>`).join('');};
+    const widths=[],ratios=[],rims=[];
+    for(let v=135;v<=345;v+=10)widths.push(v);
+    for(let v=25;v<=85;v+=5)ratios.push(v);
+    for(let v=12;v<=24;v++)rims.push(v);
+    const id=i=>document.getElementById(i);
+    const w1=id('w1'),a1=id('a1'),r1=id('r1'),w2=id('w2'),a2=id('a2'),r2=id('r2');
+    fill(w1,widths,205);fill(a1,ratios,55);fill(r1,rims,16);
+    fill(w2,widths,225);fill(a2,ratios,45);fill(r2,rims,17);
+    const geom=(w,a,r)=>{const side=w*a/100;const dia=r*25.4+2*side;const circ=Math.PI*dia;return{w,a,r,side,dia,circ,revs:1e6/circ};};
+    const specsHtml=(g,t)=>`<li><span>${t.dia}</span><b>${Math.round(g.dia)} mm · ${(g.dia/25.4).toFixed(1)}"</b></li>
+      <li><span>${t.side}</span><b>${Math.round(g.side)} mm</b></li>
+      <li><span>${t.circ}</span><b>${Math.round(g.circ)} mm</b></li>
+      <li><span>${t.revs}</span><b>${Math.round(g.revs)}</b></li>`;
+    function render(){
+      const t = T[document.documentElement.lang==='ar'?'ar':'en'];
+      const g1=geom(+w1.value,+a1.value,+r1.value), g2=geom(+w2.value,+a2.value,+r2.value);
+      id('str1').textContent=`${g1.w}/${g1.a} R${g1.r}`;
+      id('str2').textContent=`${g2.w}/${g2.a} R${g2.r}`;
+      id('specs1').innerHTML=specsHtml(g1,t);
+      id('specs2').innerHTML=specsHtml(g2,t);
+      const dmm=g2.dia-g1.dia, dpct=dmm/g1.dia*100, speedo=100*g2.dia/g1.dia;
+      const sgn=x=>(x>=0?'+':'');
+      id('compareBox').innerHTML=
+        `<div class="cc"><b>${sgn(dmm)}${dmm.toFixed(0)} mm</b><span>${t.diff}</span></div>
+         <div class="cc"><b>${sgn(dpct)}${dpct.toFixed(1)}%</b><span>${t.diffp}</span></div>
+         <div class="cc"><b>${speedo.toFixed(0)} km/h</b><span>${t.speedo}</span></div>`;
+      const note=id('calcNote');
+      if(Math.abs(dmm)<0.5){note.className='calc-note ok';note.textContent=t.same;}
+      else if(Math.abs(dpct)<=3){note.className='calc-note ok';note.textContent=t.ok;}
+      else{note.className='calc-note warn';note.textContent=t.warn;}
+    }
+    [w1,a1,r1,w2,a2,r2].forEach(s=>s.addEventListener('change',render));
+    window.calcRender=render; render();
+
+    id('calcReq').addEventListener('click',()=>{
+      const size=id('str1').textContent;
+      const fs=id('fsize'); if(fs) fs.value=size;
+      const fsv=id('fservice');
+      if(fsv)[...fsv.options].forEach(o=>{ if(/New Tyres|إطارات جديدة/.test(o.textContent)) o.selected=true; });
+      const book=id('book'); if(book) book.scrollIntoView({behavior:'smooth'});
+      const fn=id('fname'); if(fn) setTimeout(()=>fn.focus(),500);
+    });
   })();
 
   /* reveal on scroll */
