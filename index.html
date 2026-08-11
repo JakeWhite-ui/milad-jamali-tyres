@@ -107,11 +107,11 @@
   .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%)}
   .hero .wrap{position:relative;z-index:2}
-  .hero-inner{max-width:660px}
-  .hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(244,81,30,.16);border:1px solid rgba(244,81,30,.5);color:#ff8a5c;padding:7px 15px;border-radius:100px;font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:600;margin-bottom:22px}
-  .hero h1{font-size:clamp(38px,6.4vw,72px)}
+  .hero-inner{max-width:880px}
+  .hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(244,81,30,.16);border:1px solid rgba(244,81,30,.5);color:#ff8a5c;padding:8px 17px;border-radius:100px;font-family:'Oswald';text-transform:uppercase;letter-spacing:2.5px;font-size:12.5px;font-weight:600;margin-bottom:26px}
+  .hero h1{font-size:clamp(42px,7.2vw,86px);line-height:1.04;letter-spacing:.5px;text-shadow:0 2px 34px rgba(0,0,0,.35)}
   .hero h1 .hl{color:var(--red)}
-  .hero p.sub{color:#d3d6dd;font-size:19px;margin:22px 0 32px;max-width:540px}
+  .hero p.sub{color:#dfe2e8;font-size:clamp(17px,1.5vw,21px);margin:24px 0 34px;max-width:600px;text-shadow:0 1px 16px rgba(0,0,0,.4)}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
   .hero-badges{display:flex;gap:30px;margin-top:40px;flex-wrap:wrap}
   .hero-badges .b b{font-family:'Oswald';font-size:30px;display:block;line-height:1}
@@ -127,12 +127,17 @@
   @keyframes ring{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(12deg)}40%,80%{transform:rotate(-12deg)}}
   .floaters .call span{animation:ring 1.6s ease-in-out infinite;display:inline-block}
 
-  /* brands strip */
-  .brands{background:var(--dark);padding:34px 0}
-  .brands .wrap{display:flex;align-items:center;justify-content:center;gap:14px 44px;flex-wrap:wrap}
-  .brands .lbl{color:#8a8f99;font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;font-size:13px;margin-right:10px}
-  .brands .brand{color:#fff;font-family:'Oswald';font-weight:700;font-size:22px;letter-spacing:1px;opacity:.72;transition:opacity .2s,color .2s}
-  .brands .brand:hover{opacity:1;color:var(--red)}
+  /* brands marquee (full-width, auto-scrolling) */
+  .brands{background:var(--dark);padding:30px 0;overflow:hidden}
+  .brands .wrap{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+  .brands .lbl{color:#8a8f99;font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;font-size:13px}
+  .marquee{overflow:hidden;margin-top:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 48s linear infinite;will-change:transform}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee .brand{color:#fff;font-family:'Oswald';font-weight:700;font-size:22px;letter-spacing:1px;opacity:.6;white-space:nowrap;transition:opacity .2s,color .2s}
+  .marquee .brand:hover{opacity:1;color:var(--red)}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
   /* services */
   .grid-serv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
@@ -342,6 +347,7 @@
       <span><span class="ic">📍</span><span data-i18n="top.addr">Al Quoz Third, Dubai</span></span>
       <span class="hide-m"><span class="ic">🕒</span><span data-i18n="top.hours">Open 24/7 · Every day</span></span>
       <a href="tel:+971503945285"><span class="ic">📞</span><span class="ltr">050 394 5285</span></a>
+      <a class="hide-m" href="tel:+97144106884"><span class="ic">☎️</span><span class="ltr">04 410 6884</span></a>
     </div>
     <div class="tb-right">
       <span class="rate"><span class="stars">★★★★★</span> <b>4.9</b> · <span class="ltr">1,548</span> <span data-i18n="top.reviews">reviews</span></span>
@@ -353,7 +359,7 @@
 <header id="hdr">
   <div class="wrap nav">
     <a href="#top" class="logo" id="logoTop">
-      <img class="logo-img" src="assets/logo.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+      <img class="logo-img" src="assets/logo-day.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
       <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
     </a>
     <nav class="nav-links">
@@ -410,15 +416,8 @@
 
 <!-- BRANDS -->
 <div class="brands">
-  <div class="wrap">
-    <span class="lbl" data-i18n="brands.label">We fit all major brands:</span>
-    <a class="brand">Michelin</a>
-    <a class="brand">Bridgestone</a>
-    <a class="brand">Pirelli</a>
-    <a class="brand">Continental</a>
-    <a class="brand">Goodyear</a>
-    <a class="brand">Dunlop</a>
-  </div>
+  <div class="wrap"><span class="lbl" data-i18n="brands.label">We fit all major brands</span></div>
+  <div class="marquee"><div class="marquee-track" id="brandTrack" aria-hidden="true"></div></div>
 </div>
 
 <!-- SERVICES -->
@@ -439,7 +438,7 @@
         <div class="body"><h3 data-i18n="serv2.t">Tyre Fitting</h3><p data-i18n="serv2.d">Professional fitting of new and replacement tyres for all car and SUV models.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">03</span><img src="assets/alignment.jpg" alt="Wheel balancing and alignment" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=700&q=80'"></div>
+        <div class="ph"><span class="num">03</span><img src="assets/balancing.jpg" alt="Wheel balancing and alignment" loading="lazy" onerror="this.onerror=null;this.src='assets/alignment.jpg'"></div>
         <div class="body"><h3 data-i18n="serv3.t">Wheel Balancing &amp; Alignment</h3><p data-i18n="serv3.d">Precise balancing and alignment to remove vibration and extend the life of your tyres.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
@@ -682,7 +681,8 @@
 
       <div class="info-card reveal">
         <div class="info-row"><span class="ic">📍</span><div><div class="lbl" data-i18n="info.addr.l">Address</div><a class="val" href="https://www.google.com/maps/place/Milad+Jamali+Tyres/@25.1648201,55.2455127,17z" target="_blank" rel="noopener" data-i18n="info.addr.v">47-1 Al Hajar Rd, Al Quoz Third, Dubai</a></div></div>
-        <div class="info-row"><span class="ic">📞</span><div><div class="lbl" data-i18n="info.phone.l">Phone</div><a class="val ltr" href="tel:+971503945285">050 394 5285</a></div></div>
+        <div class="info-row"><span class="ic">📞</span><div><div class="lbl" data-i18n="info.phone.l">Phone · WhatsApp</div><a class="val ltr" href="tel:+971503945285">050 394 5285</a></div></div>
+        <div class="info-row"><span class="ic">☎️</span><div><div class="lbl" data-i18n="info.landline.l">Landline</div><a class="val ltr" href="tel:+97144106884">04 410 6884</a></div></div>
         <div class="info-row"><span class="ic">💬</span><div><div class="lbl">WhatsApp</div><a class="val" href="https://wa.me/971503945285" target="_blank" rel="noopener" data-i18n="info.wa.v">Chat with us instantly</a></div></div>
         <div class="info-row"><span class="ic">🕒</span><div><div class="lbl" data-i18n="info.hours.l">Hours</div><div class="val" data-i18n="info.hours.v">Open 24/7 · Every day</div></div></div>
         <div class="map">
@@ -714,7 +714,7 @@
     <div class="foot-grid">
       <div>
         <a href="#top" class="logo foot-logo" style="color:#fff">
-          <img class="logo-img" src="assets/logo.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+          <img class="logo-img" src="assets/logo-night.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
           <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
         </a>
         <p data-i18n="foot.about">24/7 tyre repair, fitting, balancing &amp; brand-new tyres in Al Quoz, Dubai. Rated 4.9★ by 1,548 drivers.</p>
@@ -747,6 +747,7 @@
         <div class="foot-links">
           <a href="https://www.google.com/maps/place/Milad+Jamali+Tyres/@25.1648201,55.2455127,17z" target="_blank" rel="noopener" data-i18n="info.addr.v">47-1 Al Hajar Rd, Al Quoz Third</a>
           <a href="tel:+971503945285" class="ltr">050 394 5285</a>
+          <a href="tel:+97144106884" class="ltr">04 410 6884</a>
           <a data-i18n="foot.hours">Open 24 hours · Every day</a>
         </div>
       </div>
@@ -850,7 +851,7 @@
     "form.name":"اسمك","form.phone":"رقم الهاتف","form.service":"اختر الخدمة…","form.car":"موديل السيارة (اختياري)","form.size":"مقاس الإطار — مثال: 205/55 R16 (إن وُجد)","form.msg":"أي شيء آخر يجب أن نعرفه؟",
     "form.submit":"أرسل الحجز عبر واتساب","form.note":"يفتح واتساب مع تفاصيل حجزك جاهزة.",
     "info.addr.l":"العنوان","info.addr.v":"٤٧-١ شارع الحجر، القوز الثالثة، دبي",
-    "info.phone.l":"الهاتف","info.wa.v":"تحدّث معنا فورًا",
+    "info.phone.l":"الهاتف · واتساب","info.landline.l":"الهاتف الأرضي","info.wa.v":"تحدّث معنا فورًا",
     "info.hours.l":"ساعات العمل","info.hours.v":"مفتوح ٢٤/٧ · كل يوم",
     "final.title":"إطار مثقوب؟ نحن مفتوحون الآن.",
     "final.p":"لا حاجة لموعد. اتصل أو راسلنا على واتساب وسنعيدك إلى الطريق — ليلًا أو نهارًا.",
@@ -895,6 +896,8 @@
     document.documentElement.setAttribute('data-theme', mode);
     themeBtn.textContent = mode === 'dark' ? '☀️' : '🌙';
     document.querySelector('meta[name=theme-color]').setAttribute('content', mode === 'dark' ? '#15171c' : '#0f1115');
+    const hLogo = document.querySelector('#logoTop .logo-img');
+    if (hLogo) hLogo.src = mode === 'dark' ? 'assets/logo-night.png' : 'assets/logo-day.png';
     localStorage.setItem('mjt-theme', mode);
   }
   themeBtn.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
@@ -1022,6 +1025,15 @@
       const book=id('book'); if(book) book.scrollIntoView({behavior:'smooth'});
       const fn=id('fname'); if(fn) setTimeout(()=>fn.focus(),500);
     });
+  })();
+
+  /* ===== brands marquee ===== */
+  (function brandMarquee(){
+    const track = document.getElementById('brandTrack');
+    if(!track) return;
+    const brands = ["BFGoodrich","Bridgestone","Continental","Cooper","Dunlop","Falken","Giti","Goodyear","Hankook","Kumho","Kustone","Laufenn","Michelin","Nankang","Nexen","Nitto","Otani","Pirelli","Riken","Roadstone","RoadX","Sumitomo","Toyo","Vredestein","Yokohama","Zeetex"];
+    const html = brands.map(b => `<span class="brand">${b}</span>`).join('');
+    track.innerHTML = html + html; // duplicate for a seamless loop
   })();
 
   /* reveal on scroll */
