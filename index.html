@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="assets/logo-day.png" />
+<link rel="preload" as="image" href="assets/logo-night.png" />
 <style>
   :root{
     --red:#f4511e;        /* Milad orange */
@@ -88,7 +90,7 @@
   header.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.12)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
   .logo{display:flex;align-items:center;gap:10px;font-family:'Oswald';font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:1px;color:var(--ink)}
-  .logo .logo-img{height:46px;width:auto}
+  .logo .logo-img{height:58px;width:auto;transition:none}
   .logo .logo-text{display:none;align-items:center;gap:4px}
   .logo.no-img .logo-img{display:none}
   .logo.no-img .logo-text{display:inline-flex}
@@ -106,12 +108,12 @@
   .hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;padding:80px 0;overflow:hidden}
   .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg, rgba(15,17,21,.92) 0%, rgba(15,17,21,.72) 45%, rgba(15,17,21,.35) 100%)}
-  .hero .wrap{position:relative;z-index:2}
-  .hero-inner{max-width:880px}
+  .hero .wrap{position:relative;z-index:2;max-width:1440px}
+  .hero-inner{max-width:1240px}
   .hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(244,81,30,.16);border:1px solid rgba(244,81,30,.5);color:#ff8a5c;padding:8px 17px;border-radius:100px;font-family:'Oswald';text-transform:uppercase;letter-spacing:2.5px;font-size:12.5px;font-weight:600;margin-bottom:26px}
-  .hero h1{font-size:clamp(42px,7.2vw,86px);line-height:1.04;letter-spacing:.5px;text-shadow:0 2px 34px rgba(0,0,0,.35)}
+  .hero h1{font-size:clamp(42px,8vw,104px);line-height:1.02;letter-spacing:.5px;text-shadow:0 2px 34px rgba(0,0,0,.35)}
   .hero h1 .hl{color:var(--red)}
-  .hero p.sub{color:#dfe2e8;font-size:clamp(17px,1.5vw,21px);margin:24px 0 34px;max-width:600px;text-shadow:0 1px 16px rgba(0,0,0,.4)}
+  .hero p.sub{color:#dfe2e8;font-size:clamp(17px,1.6vw,22px);margin:26px 0 36px;max-width:720px;text-shadow:0 1px 16px rgba(0,0,0,.4)}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
   .hero-badges{display:flex;gap:30px;margin-top:40px;flex-wrap:wrap}
   .hero-badges .b b{font-family:'Oswald';font-size:30px;display:block;line-height:1}
@@ -261,7 +263,7 @@
   footer{background:var(--dark);color:#aeb2bb;padding:60px 0 28px}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:36px}
   .foot-grid p{font-size:14px;margin-top:14px;max-width:300px}
-  .foot-logo .logo-img{height:44px}
+  .foot-logo .logo-img{height:52px}
   .foot h4{color:#fff;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:16px;margin-bottom:16px}
   .foot-links{display:grid;gap:10px}
   .foot-links a{font-size:14px}
