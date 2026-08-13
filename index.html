@@ -13,8 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="assets/logo-day.png" />
-<link rel="preload" as="image" href="assets/logo-night.png" />
+<link rel="preload" as="image" href="assets/logo-day.png?v=2" />
+<link rel="preload" as="image" href="assets/logo-night.png?v=2" />
 <style>
   :root{
     --red:#f4511e;        /* Milad orange */
@@ -385,7 +385,7 @@
 <header id="hdr">
   <div class="wrap nav">
     <a href="#top" class="logo" id="logoTop">
-      <img class="logo-img" src="assets/logo-day.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+      <img class="logo-img" src="assets/logo-day.png?v=2" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
       <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
     </a>
     <nav class="nav-links">
@@ -466,7 +466,7 @@
         <div class="body"><h3 data-i18n="serv2.t">Tyre Fitting</h3><p data-i18n="serv2.d">Professional fitting of new and replacement tyres for all car and SUV models.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
-        <div class="ph"><span class="num">03</span><img src="assets/balancing.jpg" alt="Wheel balancing and alignment" loading="lazy" onerror="this.onerror=null;this.src='assets/alignment.jpg'"></div>
+        <div class="ph"><span class="num">03</span><img src="assets/balancing.jpg?v=2" alt="Wheel balancing and alignment" loading="lazy" onerror="this.onerror=null;this.src='assets/alignment.jpg'"></div>
         <div class="body"><h3 data-i18n="serv3.t">Wheel Balancing &amp; Alignment</h3><p data-i18n="serv3.d">Precise balancing and alignment to remove vibration and extend the life of your tyres.</p><a href="#book" class="more" data-i18n="cta.booknow">Book now →</a></div>
       </article>
       <article class="serv reveal">
@@ -775,7 +775,7 @@
     <div class="foot-grid">
       <div>
         <a href="#top" class="logo foot-logo" style="color:#fff">
-          <img class="logo-img" src="assets/logo-night.png" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
+          <img class="logo-img" src="assets/logo-night.png?v=2" alt="Milad Jamali Tyres" onerror="this.closest('.logo').classList.add('no-img')">
           <span class="logo-text">Milad&nbsp;<b>Jamali</b>&nbsp;Tyres</span>
         </a>
         <p data-i18n="foot.about">24/7 tyre repair, fitting, balancing &amp; brand-new tyres in Al Quoz, Dubai. Rated 4.9★ by 1,548 drivers.</p>
@@ -965,7 +965,7 @@
     themeBtn.textContent = mode === 'dark' ? '☀️' : '🌙';
     document.querySelector('meta[name=theme-color]').setAttribute('content', mode === 'dark' ? '#15171c' : '#0f1115');
     const hLogo = document.querySelector('#logoTop .logo-img');
-    if (hLogo) hLogo.src = mode === 'dark' ? 'assets/logo-night.png' : 'assets/logo-day.png';
+    if (hLogo) hLogo.src = mode === 'dark' ? 'assets/logo-night.png?v=2' : 'assets/logo-day.png?v=2';
     localStorage.setItem('mjt-theme', mode);
   }
   themeBtn.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
