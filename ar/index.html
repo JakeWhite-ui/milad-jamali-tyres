@@ -354,7 +354,7 @@
   .serv:hover .more{gap:12px}
 
   /* special offers */
-  .offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+  .offers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:46px auto 0;max-width:840px}
   .offer{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
   .offer:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
   .offer-badge{position:absolute;top:0;right:0;background:var(--red);color:#fff;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:12px;font-weight:600;padding:7px 15px;border-bottom-left-radius:12px}
@@ -731,15 +731,6 @@
         <div class="offer-brands">Dunlop · Bridgestone</div>
         <a href="#book" class="offer-cta" data-i18n="off.claim">احصل على العرض ←</a>
       </article>
-      <article class="offer reveal">
-        <span class="offer-badge" data-i18n="off3.badge">خصم ٢٠٪</span>
-        <div class="offer-ic">♿</div>
-        <div class="offer-brand" data-i18n="off3.k">حصري</div>
-        <h3 class="offer-h" data-i18n="off3.t">أصحاب الهمم</h3>
-        <p class="offer-d" data-i18n="off3.d">خصم ٢٠٪ على جميع خدماتنا لأصحاب الهمم.</p>
-        <div class="offer-note" data-i18n="off3.note">*تطبق الشروط والأحكام</div>
-        <a href="#book" class="offer-cta" data-i18n="off.claim">احصل على العرض ←</a>
-      </article>
     </div>
   </div>
 </section>
@@ -935,10 +926,6 @@
     <div class="book-grid">
       <div class="info-card reveal">
         <form onsubmit="return sendWhatsApp(event)">
-          <div class="form-row">
-            <input type="text" id="fname" placeholder="اسمك" data-i18n-ph="form.name" required />
-            <input type="tel" id="fphone" placeholder="رقم الهاتف" data-i18n-ph="form.phone" required />
-          </div>
           <div class="form-row">
             <select id="fservice">
               <option value="" data-i18n="form.service">اختر الخدمة…</option>
@@ -1201,7 +1188,7 @@
       const fsv=id('fservice');
       if(fsv)[...fsv.options].forEach(o=>{ if(/New Tyres|إطارات جديدة/.test(o.textContent)) o.selected=true; });
       const book=id('book'); if(book) book.scrollIntoView({behavior:'smooth'});
-      const fn=id('fname'); if(fn) setTimeout(()=>fn.focus(),500);
+      if(fsv) setTimeout(()=>fsv.focus(),500);
     });
   })();
 
@@ -1244,14 +1231,11 @@
   /* form -> whatsapp */
   function sendWhatsApp(e){
     e.preventDefault();
-    const n = document.getElementById('fname').value;
-    const p = document.getElementById('fphone').value;
     const s = document.getElementById('fservice').value;
     const c = document.getElementById('fcar').value;
     const sz = document.getElementById('fsize').value;
     const m = document.getElementById('fmsg').value;
     let text = `Hi Milad Jamali Tyres! I'd like to book:%0A`;
-    text += `Name: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0A`;
     if (s) text += `Service: ${encodeURIComponent(s)}%0A`;
     if (c) text += `Car: ${encodeURIComponent(c)}%0A`;
     if (sz) text += `Tyre size: ${encodeURIComponent(sz)}%0A`;
