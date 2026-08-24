@@ -353,30 +353,6 @@
   .serv .more{color:var(--red);font-family:'Oswald';text-transform:uppercase;font-size:13px;letter-spacing:1px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
   .serv:hover .more{gap:12px}
 
-  /* special offers */
-  .offers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:46px auto 0;max-width:840px}
-  .offer{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
-  .offer:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .offer-badge{position:absolute;top:0;right:0;background:var(--red);color:#fff;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:12px;font-weight:600;padding:7px 15px;border-bottom-left-radius:12px}
-  .offer-ic{font-size:44px;line-height:1;margin-bottom:14px}
-  .offer-brand{font-family:'Oswald';text-transform:uppercase;letter-spacing:2px;color:var(--red);font-weight:700;font-size:15px;margin-bottom:6px}
-  .offer-big{font-family:'Oswald';font-weight:700;font-size:66px;line-height:.95;color:var(--red);margin-bottom:8px}
-  .offer-big .cur{font-size:24px;vertical-align:super;margin-right:4px;letter-spacing:1px}
-  .offer-h{font-size:23px;margin-bottom:10px;color:var(--ink)}
-  .offer-d{color:var(--grey);font-size:15px;margin-bottom:16px;flex-grow:1}
-  .offer-brands{font-family:'Oswald';letter-spacing:1px;color:var(--ink);font-weight:700;font-size:16px;margin-bottom:18px}
-  .offer-note{font-size:12px;color:var(--grey);margin-bottom:16px}
-  .offer-cta{margin-top:auto;color:var(--red);font-family:'Oswald';text-transform:uppercase;font-size:13px;letter-spacing:1px;font-weight:600;display:inline-flex;gap:6px;align-items:center;align-self:flex-start}
-  .offer:hover .offer-cta{gap:12px}
-  .offer-dark{background:linear-gradient(160deg,#191c22,#0f1115);border-color:#2a2e37;color:#fff}
-  .offer-dark .offer-h{color:#fff}.offer-dark .offer-d{color:#c2c6cd}
-  .offer-accent{background:linear-gradient(155deg,var(--red),var(--red-2));border-color:transparent;color:#fff}
-  .offer-accent .offer-badge{background:#fff;color:var(--red)}
-  .offer-accent .offer-big,.offer-accent .offer-h,.offer-accent .offer-brands{color:#fff}
-  .offer-accent .offer-d{color:#ffe0d5}
-  .offer-accent .offer-cta{color:#fff}
-  [dir="rtl"] .offer-badge{right:auto;left:0;border-bottom-left-radius:0;border-bottom-right-radius:12px}
-
   /* why choose / stats */
   .why{background:var(--dark);color:#fff}
   .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -544,7 +520,7 @@
 
   @media(max-width:960px){
     .why-grid,.book-grid{grid-template-columns:1fr}
-    .grid-serv,.offers-grid{grid-template-columns:1fr 1fr}
+    .grid-serv{grid-template-columns:1fr 1fr}
     .review{flex-basis:calc((100% - 24px)/2)}
     .foot-grid{grid-template-columns:1fr 1fr}
     .nav-links{display:none}
@@ -560,7 +536,7 @@
     .topbar .wrap{height:auto;min-height:38px;padding:7px 0;font-size:12px;gap:3px 12px;align-items:center;flex-wrap:wrap}
     .topbar .tb-left{gap:3px 12px}
     .topbar .tb-left a[href^="tel"]{display:none}
-    .grid-serv,.offers-grid,.foot-grid,.form-row{grid-template-columns:1fr}
+    .grid-serv,.foot-grid,.form-row{grid-template-columns:1fr}
     .review{flex-basis:88%}
     .rev-nav{display:none}
     .stats{grid-template-columns:1fr 1fr;gap:28px}
@@ -603,7 +579,6 @@
     </a>
     <nav class="nav-links">
       <a href="#services" data-i18n="nav.services">خدماتنا</a>
-      <a href="#offers" data-i18n="nav.offers">العروض</a>
       <a href="#why" data-i18n="nav.why">لماذا نحن</a>
       <a href="#reviews" data-i18n="nav.reviews">التقييمات</a>
       <a href="#calc" data-i18n="nav.calc">حاسبة المقاس</a>
@@ -622,7 +597,6 @@
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services" data-i18n="nav.services">خدماتنا</a>
-    <a href="#offers" data-i18n="nav.offers">العروض</a>
     <a href="#why" data-i18n="nav.why">لماذا نحن</a>
     <a href="#reviews" data-i18n="nav.reviews">التقييمات</a>
     <a href="#calc" data-i18n="nav.calc">حاسبة المقاس</a>
@@ -701,35 +675,6 @@
       <article class="serv reveal">
         <div class="ph"><span class="num">08</span><img width="1000" height="500" src="/assets/brakepad.webp?v=1" alt="New brake pads" loading="lazy" onerror="this.onerror=null;this.src='/assets/alignment.webp'"></div>
         <div class="body"><h3 data-i18n="serv8.t">تيل فرامل جديد</h3><p data-i18n="serv8.d">استبدال تيل الفرامل بقطع عالية الجودة لتوقّف آمن وموثوق.</p><a href="#book" class="more" data-i18n="cta.booknow">احجز الآن ←</a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SPECIAL OFFERS -->
-<section id="offers" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="center reveal">
-      <span class="eyebrow" data-i18n="off.eyebrow">لفترة محدودة</span>
-      <h2 class="h-sec" data-i18n="off.title">عروض خاصة</h2>
-      <p class="lead" style="margin:0 auto" data-i18n="off.lead">عروض حالية في ميلاد جمالي للإطارات — اغتنمها قبل انتهائها.</p>
-    </div>
-    <div class="offers-grid">
-      <article class="offer offer-dark reveal">
-        <span class="offer-badge" data-i18n="off1.badge">لفترة محدودة</span>
-        <div class="offer-ic">🛡️</div>
-        <div class="offer-brand">Falken Tyres</div>
-        <h3 class="offer-h" data-i18n="off1.t">ضمان مجاني مدى الحياة ضد مخاطر الطريق</h3>
-        <p class="offer-d" data-i18n="off1.d">اشترِ أي طقم إطارات فالكن واحصل على تغطية مدى الحياة ضد مخاطر الطريق — مجانًا تمامًا.</p>
-        <a href="#book" class="offer-cta" data-i18n="off.claim">احصل على العرض ←</a>
-      </article>
-      <article class="offer offer-accent reveal">
-        <span class="offer-badge" data-i18n="off2.badge">استرداد نقدي</span>
-        <div class="offer-big"><span class="cur">AED</span>200</div>
-        <h3 class="offer-h" data-i18n="off2.t">استرداد نقدي فوري</h3>
-        <p class="offer-d" data-i18n="off2.d">استرجع ٢٠٠ درهم عند شراء إطارات دنلوب أو بريدجستون.</p>
-        <div class="offer-brands">Dunlop · Bridgestone</div>
-        <a href="#book" class="offer-cta" data-i18n="off.claim">احصل على العرض ←</a>
       </article>
     </div>
   </div>
